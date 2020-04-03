@@ -11,7 +11,7 @@
       {{method_description}}
     </p>
 
-    <form class="form-box" v-on:submit="calculate_result">
+    <form class="form-box" v-on:submit.prevent="calculate_result">
       <div class="helper">
         <span></span>
         <label>Introduce las ecuaciones</label>
@@ -36,25 +36,75 @@
       <span></span>
       <div class="helper">
         <label>Calcular Solución</label>
+        <p>Completa los datos para determinar la solución del problema</p>
       </div>
+      <span></span>
+      <div class="helper">
+        <label for>Margen de error</label>
+        <p>El máximo valor de error permitido para la solución.</p>
+      </div>
+      <input type="number" placeholder="Margen de error" step="any" v-model="error_margin" />
+      <div class="helper">
+        <label for>Limite de operaciones</label>
+        <p>El limite de operaciones para determinar la solución.</p>
+      </div>
+      <input type="number" placeholder="Limite de operaciones" v-model="operations_limit" />
       <button type="submit">Calcular</button>
     </form>
-
-    <p>{{extended_matrix}}</p>
+    <span></span>
+    <h1>Solución</h1>
+    <div v-for="(valor, idx) in result" v-bind:key="idx">
+      <label class="result_label">Variable {{idx + 1}} : {{valor}}</label>
+    </div>
   </div>
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   data() {
     return {
-      array_of_strings: ["", "", ""]
+      array_of_strings: ["", "", ""],
+      result: null,
+      error_margin: 0.005,
+      operations_limit: 300,
+      toast: Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: false
+      })
     };
   },
   methods: {
     calculate_result() {
       if (this.method == "Jacobi") {
-        console.log(this.calculate_jacobi);
+        try {
+          let result = this.calculate_jacobi(
+            this.extended_matrix,
+            null,
+            this.error_margin,
+            this.operations_limit
+          );
+          console.log(result);
+          for (const iterator of result) {
+            if (isNaN(iterator) || iterator == null) {
+              throw new Error("No hemos encontrado la solución.");
+            }
+          }
+          this.toast.fire({
+            icon: "success",
+            title: "Calculado."
+          });
+        } catch (e) {
+          this.result = null;
+          this.toast.fire({
+            icon: "error",
+            title: e
+          });
+        }
       }
     },
     add_ecuation() {
@@ -69,7 +119,61 @@ export default {
     get_key(e) {
       cosole.console.log(e);
     },
-    calculate_jacobi(x, err, li) {}
+
+    calculate_jacobi(a, x, err, li) {
+      let i,
+        j,
+        aux,
+        t,
+        s,
+        n = a.length,
+        y = new Array(n);
+      let c = 0;
+
+      if (x == null) {
+        x = new Array(n);
+        for (i = 0; i < n; i++) {
+          x[i] = 0;
+        }
+      }
+      while (true) {
+        for (i = 0; i < n; i++) {
+          for (s = 0, j = 0; j < n; j++) {
+            s += i != j ? a[i][j] * x[j] : 0;
+          }
+          y[i] = (a[i][n] - s) / a[i][i];
+        }
+        for (t = 1, i = 0; i < n; i++) {
+          if (y[i]) {
+            if (Math.abs(x[i] / y[i] - 1) > err) {
+              t = 0;
+              break;
+            }
+          }
+        }
+        if (t) {
+          this.result = y;
+          return y;
+        }
+        for (t = 1, i = 0; i < n; i++) {
+          for (s = 0, j = 0; j < n; j++) {
+            s += a[i][j] * y[j];
+          }
+          if (Math.abs(a[i][n] - s) > err) {
+            t = 0;
+            break;
+          }
+        }
+        if (t) {
+          this.result = y;
+          return y;
+        }
+        if (c++ == li) throw new Error("Limite de pasos exedido");
+        aux = x;
+        x = y;
+        y = aux;
+      }
+    }
   },
   computed: {
     extended_matrix() {
@@ -77,7 +181,7 @@ export default {
       let current_matrix_element = [];
       let current_line;
       for (const iterator of this.array_of_strings) {
-        current_line = iterator.split(" ");
+        current_line = iterator.trim().split(" ");
         current_matrix_element = [];
         for (const element of current_line) {
           current_matrix_element.push(parseFloat(element));
@@ -148,6 +252,11 @@ export default {
   background: #42b983;
   color: #fff;
   border: none;
+}
+
+.method label.result_label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
 }
 
 @media (max-width: 650px) {
