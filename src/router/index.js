@@ -67,6 +67,19 @@ export default new Router({
         method_description:
           "La base del método consiste en construir una sucesión convergente definida iterativamente. El límite de esta sucesión es precisamente la solución del sistema. A efectos prácticos si el algoritmo se detiene después de un número finito de pasos se llega a una aproximación al valor de x de la solución del sistema."
       }
+    },
+    {
+      path: "/Metodos/Gauss_Seidel",
+      name: "Metodo Gauss Seidel",
+      component: LinearEcuations,
+      props: {
+        method: "Gauss Seidel",
+        method_introduction:
+          "En análisis numérico el método de Gauss-Seidel es un método iterativo utilizado para resolver sistemas de ecuaciones lineales. El método se llama así en honor a los matemáticos alemanes Carl Friedrich Gauss y Philipp Ludwig von Seidel y es similar al método de Jacobi.",
+
+        method_description:
+          "Es un método iterativo, lo que significa que se parte de una aproximación inicial y se repite el proceso hasta llegar a una solución con un margen de error tan pequeño como se quiera. Buscamos la solución a un sistema de ecuaciones lineales, en notación matricial."
+      }
     }
   ]
 });

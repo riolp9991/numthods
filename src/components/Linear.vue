@@ -119,7 +119,7 @@ export default {
     get_key(e) {
       cosole.console.log(e);
     },
-
+    calculate_gauss_seidel(a, x, err, li) {},
     calculate_jacobi(a, x, err, li) {
       let i,
         j,

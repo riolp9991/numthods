@@ -30,7 +30,7 @@
               <router-link to="/Metodos/Jacobi">Jacobi</router-link>
             </li>
             <li>
-              <a href="#">Seidel</a>
+              <router-link to="/Metodos/Gauss_Seidel">Gauss Seidel</router-link>
             </li>
             <span></span>
             <h2>Interpolación</h2>
@@ -66,7 +66,7 @@
               <span></span>
               <label>Resolver Ecuación</label>
               <router-link to="/Metodos/Jacobi" v-on:click="togle_sidebar()">Jacobi</router-link>
-              <a href="#">Seidel</a>
+              <router-link to="/Metodos/Gauss_Seidel" v-on:click="togle_sidebar()">Gauss Seidel</router-link>
               <span></span>
               <label>Busqueda de Raíz</label>
               <a href="#">Lagrange</a>
