@@ -53,9 +53,12 @@
     </form>
     <span></span>
     <h1>Solución</h1>
+    <span></span>
     <div v-for="(valor, idx) in result" v-bind:key="idx">
-      <label class="result_label">Variable {{idx + 1}} : {{valor}}</label>
+      <label class="result_label">Variable {{idx + 1}}: {{valor}}</label>
     </div>
+    <span></span>
+    <label>{{number_of_steps}}</label>
   </div>
 </template>
 
@@ -69,6 +72,7 @@ export default {
       result: null,
       error_margin: 0.005,
       operations_limit: 300,
+      number_of_steps: null,
       toast: Swal.mixin({
         toast: true,
         position: "top-end",
@@ -80,15 +84,14 @@ export default {
   },
   methods: {
     calculate_result() {
-      if (this.method == "Jacobi") {
-        try {
+      try {
+        if (this.method == "Jacobi") {
           let result = this.calculate_jacobi(
             this.extended_matrix,
             null,
             this.error_margin,
             this.operations_limit
           );
-          console.log(result);
           for (const iterator of result) {
             if (isNaN(iterator) || iterator == null) {
               throw new Error("No hemos encontrado la solución.");
@@ -98,14 +101,58 @@ export default {
             icon: "success",
             title: "Calculado."
           });
-        } catch (e) {
-          this.result = null;
+        } else if (this.method == "Gauss Seidel") {
+          let result = this.calculate_gauss_seidel(
+            this.extended_matrix,
+            null,
+            this.error_margin,
+            this.operations_limit
+          );
+          for (const iterator of result) {
+            if (isNaN(iterator) || iterator == null) {
+              throw new Error("No hemos encontrado la solución.");
+            }
+          }
           this.toast.fire({
-            icon: "error",
-            title: e
+            icon: "success",
+            title: "Calculado."
           });
         }
+      } catch (error) {
+        this.result = null;
+        this.toast.fire({
+          icon: "error",
+          title: error
+        });
+        throw error;
       }
+
+      // if (this.method == "Jacobi") {
+      //   try {
+      //     let result = this.calculate_jacobi(
+      //       this.extended_matrix,
+      //       null,
+      //       this.error_margin,
+      //       this.operations_limit
+      //     );
+      //     console.log(result);
+      //     for (const iterator of result) {
+      //       if (isNaN(iterator) || iterator == null) {
+      //         throw new Error("No hemos encontrado la solución.");
+      //       }
+      //     }
+      //     this.toast.fire({
+      //       icon: "success",
+      //       title: "Calculado."
+      //     });
+      //   } catch (e) {
+      //     this.result = null;
+      //     this.toast.fire({
+      //       icon: "error",
+      //       title: e
+      //     });
+      //   }
+      // }
     },
     add_ecuation() {
       this.array_of_strings.push("");
@@ -119,7 +166,66 @@ export default {
     get_key(e) {
       cosole.console.log(e);
     },
-    calculate_gauss_seidel(a, x, err, li) {},
+    calculate_gauss_seidel(a, x, err, li) {
+      let i,
+        j,
+        aux,
+        t,
+        s,
+        r,
+        n = a.length;
+      if (x == null) {
+        x = new Array(n);
+        for (i = 0; i < n; i++) x[i] = 0;
+      }
+      let c = 1,
+        y = x.slice();
+      while (true) {
+        for (i = 0; i < n; i++) {
+          for (s = 0, j = 0; j < n; j++) {
+            s += i != j ? a[i][j] * y[j] : 0;
+          }
+          y[i] = (a[i][n] - s) / a[i][i];
+        }
+
+        for (t = 1, i = 0; i < n; i++) {
+          if (y[i]) {
+            if (Math.abs(x[i] / y[i] - 1) > err) {
+              t = 0;
+              break;
+            }
+          }
+        }
+
+        if (t) {
+          this.result = y;
+          this.number_of_steps = "Numero de pasos: " + c;
+          return y;
+        }
+
+        for (t = 1, i = 0; i < n; i++) {
+          for (s = 0, j = 0; j < n; j++) {
+            s += a[i][j] * y[j];
+          }
+          if (Math.abs(a[i][n] - s) > err) {
+            t = 0;
+            break;
+          }
+        }
+
+        if (t) {
+          this.result = y;
+          this.number_of_steps = "Numero de pasos: " + c;
+          return y;
+        }
+
+        if (c++ >= li) {
+          throw new Error("Limite de pasos alcanzado");
+        }
+
+        for (i = 0; i < n; i++) x[i] = y[i];
+      }
+    },
     calculate_jacobi(a, x, err, li) {
       let i,
         j,
@@ -153,6 +259,7 @@ export default {
         }
         if (t) {
           this.result = y;
+          this.number_of_steps = "Numero de pasos: " + c;
           return y;
         }
         for (t = 1, i = 0; i < n; i++) {
@@ -166,6 +273,7 @@ export default {
         }
         if (t) {
           this.result = y;
+          this.number_of_steps = "Numero de pasos: " + c;
           return y;
         }
         if (c++ == li) throw new Error("Limite de pasos exedido");
@@ -256,7 +364,11 @@ export default {
 
 .method label.result_label {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 25px;
+  display: block;
+  margin-bottom: 19px;
+  color: #187c51;
 }
 
 @media (max-width: 650px) {
