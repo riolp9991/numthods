@@ -1,6 +1,6 @@
 # numthods
 
-> A Vue.js project
+> Una simple aplicación de metodos numericos creada en Vue.js
 
 ## Build Setup
 
