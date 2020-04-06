@@ -35,10 +35,10 @@
             <span></span>
             <h2>Interpolación</h2>
             <li>
-              <a href="#">Lagrange</a>
+              <router-link to="/Metodos/Lagrange" v-on:click="togle_sidebar()">Lagrange</router-link>
             </li>
             <li>
-              <a href="#">Gauss</a>
+              <router-link to="/Metodos/Interpolacion_Newton" v-on:click="togle_sidebar()">Newton</router-link>
             </li>
           </ul>
         </li>
@@ -69,8 +69,8 @@
               <router-link to="/Metodos/Gauss_Seidel" v-on:click="togle_sidebar()">Gauss Seidel</router-link>
               <span></span>
               <label>Busqueda de Raíz</label>
-              <a href="#">Lagrange</a>
-              <a href="#">Gauss</a>
+              <router-link to="/Metodos/Lagrange" v-on:click="togle_sidebar()">Lagrange</router-link>
+              <router-link to="/Metodos/Interpolacion_Newton" v-on:click="togle_sidebar()">Newton</router-link>
               <span></span>
             </div>
           </li>

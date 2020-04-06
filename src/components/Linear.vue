@@ -126,33 +126,6 @@ export default {
         });
         throw error;
       }
-
-      // if (this.method == "Jacobi") {
-      //   try {
-      //     let result = this.calculate_jacobi(
-      //       this.extended_matrix,
-      //       null,
-      //       this.error_margin,
-      //       this.operations_limit
-      //     );
-      //     console.log(result);
-      //     for (const iterator of result) {
-      //       if (isNaN(iterator) || iterator == null) {
-      //         throw new Error("No hemos encontrado la solución.");
-      //       }
-      //     }
-      //     this.toast.fire({
-      //       icon: "success",
-      //       title: "Calculado."
-      //     });
-      //   } catch (e) {
-      //     this.result = null;
-      //     this.toast.fire({
-      //       icon: "error",
-      //       title: e
-      //     });
-      //   }
-      // }
     },
     add_ecuation() {
       this.array_of_strings.push("");
