@@ -64,11 +64,11 @@
               <router-link to="/Metodos/Biseccion" v-on:click="togle_sidebar()">Bisección</router-link>
               <router-link to="/Metodos/Newton_Raphson" v-on:click="togle_sidebar()">Newton Raphson</router-link>
               <span></span>
-              <label>Resolver Ecuación</label>
+              <label>Sistemas de Ecuaciones</label>
               <router-link to="/Metodos/Jacobi" v-on:click="togle_sidebar()">Jacobi</router-link>
               <router-link to="/Metodos/Gauss_Seidel" v-on:click="togle_sidebar()">Gauss Seidel</router-link>
               <span></span>
-              <label>Busqueda de Raíz</label>
+              <label>Interpolación</label>
               <router-link to="/Metodos/Lagrange" v-on:click="togle_sidebar()">Lagrange</router-link>
               <router-link to="/Metodos/Interpolacion_Newton" v-on:click="togle_sidebar()">Newton</router-link>
               <span></span>
