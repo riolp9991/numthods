@@ -35,9 +35,6 @@
         name
         id
       />
-      <h2>{{array_of_x}}</h2>
-      <h2>{{array_of_y}}</h2>
-      <h3>{{interpolate_value_on_float}}</h3>
 
       <button type="submit">Calcular</button>
     </form>

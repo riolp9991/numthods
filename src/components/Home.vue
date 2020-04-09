@@ -8,7 +8,7 @@
     </h2>
     <div class="links">
       <!-- <a href="#">Leer Más</a> -->
-      <a href="#" class="active">Descargar apk</a>
+      <a href="#" class="active">Leer Más</a>
     </div>
 
     <section>
@@ -20,12 +20,7 @@
           <br />
           <br />
           <b>Para empesar a usar:</b> dirijete a la parte superior en la pestaña de
-          <b>Metodos</b> para resolver algun ejercicio o si lo deseas puedes descargar nuestra
-          <a
-            href="#"
-          >Aplicacion</a> para dispositivos
-          <b>android</b> creada utilizando el framework
-          <b>Xamarin</b>.
+          <b>Metodos</b> para resolver algun ejercicio .
         </p>
       </div>
     </section>

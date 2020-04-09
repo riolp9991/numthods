@@ -265,7 +265,9 @@ export default {
         current_line = iterator.trim().split(" ");
         current_matrix_element = [];
         for (const element of current_line) {
-          current_matrix_element.push(parseFloat(element));
+          if (!isNaN(parseFloat(element))) {
+            current_matrix_element.push(parseFloat(element));
+          }
         }
         result_matrix.push(current_matrix_element);
       }
