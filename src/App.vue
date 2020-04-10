@@ -44,7 +44,7 @@
         </li>
 
         <li>
-          <a href="#">Acerca de</a>
+          <router-link to="/Acerca_de">Acerca de</router-link>
         </li>
       </ul>
     </nav>
@@ -75,7 +75,7 @@
             </div>
           </li>
           <li class="item">
-            <a href="#" class="btn">Acerca de</a>
+            <router-link class="btn" to="/Acerca_de">Acerca de</router-link>
           </li>
         </div>
       </div>

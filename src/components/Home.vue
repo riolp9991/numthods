@@ -8,15 +8,15 @@
     </h2>
     <div class="links">
       <!-- <a href="#">Leer Más</a> -->
-      <a href="#" class="active">Leer Más</a>
+      <router-link class="active" to="/Acerca_de">Leer Más</router-link>
     </div>
 
     <section>
       <div class="container">
         <p>
-          <b>Numthods!</b> es una aplicación creada utilizando el framework:
+          <b>Numthods!</b> es una aplicación que ayuda al usuario a resolver problemas mátemáticos de forma rápida y sencilla. Fue creada utilizando el framework:
           <b>Vue.js</b> de
-          <b>JavaScript</b>, que ayuda al usuario a resolver problemas mátemáticos de forma rápida y sencilla.
+          <b>JavaScript</b>,
           <br />
           <br />
           <b>Para empesar a usar:</b> dirijete a la parte superior en la pestaña de
