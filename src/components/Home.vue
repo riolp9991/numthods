@@ -14,9 +14,7 @@
     <section>
       <div class="container">
         <p>
-          <b>Numthods!</b> es una aplicación que ayuda al usuario a resolver problemas mátemáticos de forma rápida y sencilla. Fue creada utilizando el framework:
-          <b>Vue.js</b> de
-          <b>JavaScript</b>,
+          <b>Numthods!</b> es una aplicación que ayuda al usuario a resolver problemas mátemáticos de forma rápida y sencilla.
           <br />
           <br />
           <b>Para empesar a usar:</b> dirijete a la parte superior en la pestaña de
