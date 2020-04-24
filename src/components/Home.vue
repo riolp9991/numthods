@@ -4,7 +4,7 @@
     <h1>Numthods!</h1>
     <h2>
       Una aplicación
-      <br />Para Resolver Problemas Mátemáticos
+      <br />Para Resolver Problemas Matemáticos
     </h2>
     <div class="links">
       <!-- <a href="#">Leer Más</a> -->
@@ -14,11 +14,11 @@
     <section>
       <div class="container">
         <p>
-          <b>Numthods!</b> es una aplicación que ayuda al usuario a resolver problemas mátemáticos de forma rápida y sencilla.
+          <b>Numthods!</b> es una aplicación que ayuda al usuario a resolver problemas matemáticos de forma rápida y sencilla.
           <br />
           <br />
-          <b>Para empesar a usar:</b> dirijete a la parte superior en la pestaña de
-          <b>Metodos</b> para resolver algun ejercicio .
+          <b>Para empezar a usar:</b> dirígete a la parte superior en la pestaña de
+          <b>Métodos</b> para resolver algún ejercicio.
         </p>
       </div>
     </section>

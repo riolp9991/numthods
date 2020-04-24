@@ -2,7 +2,6 @@
   <div>
     <nav>
       <router-link id="logo" to="/">Numthods!</router-link>
-
       <!-- <div id="logo">Numthods!</div> -->
       <label for="drop" class="toggle" v-on:click="togle_sidebar()" id="main-toggle">
         <span class="nav-icon"></span>

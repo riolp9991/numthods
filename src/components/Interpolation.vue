@@ -109,15 +109,22 @@ export default {
       }
     },
     newton_interpolation(vx, vy, x) {
-      let k;
-      i, (n = vx.length), p, y, f, b;
-      f = copy(vy);
+      let k,
+        i,
+        n = vx.length,
+        p,
+        y,
+        f,
+        b;
+      f = [...vy];
       b = new Array(n);
+
       for (k = 0; k < n - 1; k++) {
         b[k] = f[0];
         for (i = 0; i < n - k - 1; i++)
-          f[i] = (f[i + i] - f[i]) / (vx[i + k + i] - vx[i]);
+          f[i] = (f[i + 1] - f[i]) / (vx[i + k + 1] - vx[i]);
       }
+
       b[n - 1] = f[0];
       p = 1;
       y = b[0];
@@ -125,6 +132,7 @@ export default {
         p *= x - vx[k - 1];
         y += b[k] * p;
       }
+
       this.value_of_result = y;
       return y;
     },

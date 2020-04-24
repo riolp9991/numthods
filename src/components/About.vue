@@ -1,4 +1,4 @@
-!<template>
+<template>
   <div class="container about">
     <h1>Numthods</h1>
     <p>
@@ -12,7 +12,7 @@
       <b>Aplicación de una sola página</b>.
       <br />
       <br />
-      <b>¿Que significa esto?</b>
+      <b>¿Qué significa esto?</b>
       Como el nombre indica funciona en una sola página lo que elimina el tener que recargar el navegador cada ves que queremos dirigirnos a otra ubicación dentro del sitio. Una ves hecha la carga inical no tendras que volverte a preocupar por esperar, a no ser que actualices manualmente la pestaña del navegador.
     </p>
     <span></span>

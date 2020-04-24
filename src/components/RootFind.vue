@@ -10,9 +10,6 @@
       <b>Descripción:</b>
       {{metodo_Description}}
     </p>
-
-    <span></span>
-    <h1>Calcular</h1>
     <span></span>
 
     <form v-on:submit.prevent="calculate" class="form-box">
@@ -23,7 +20,13 @@
           <router-link to="/Ayuda/Ecuaciones/">pasos</router-link>
         </p>
       </div>
-      <input type="text" :class="get_alert_ecuation" v-model="ecuation" placeholder="Ecuación" />
+      <input
+        type="text"
+        :class="get_alert_ecuation"
+        v-model="ecuation"
+        name="Ecuation"
+        placeholder="Ecuación"
+      />
       <label class="input-msg" :class="get_alert_ecuation">{{ ecuation_solution }}</label>
       <span></span>
       <div class="helper">
@@ -31,27 +34,28 @@
         <p>
           Rellena los campos para calcular el intervalo en el que se encuentra
           la solución,
-          <b>ATENCIÓN</b> el intervalo se buscara desde donde inicie en
-          adelante, no mirará valores inferiores. Además tiene establecido un
-          limite de
+          <b>ATENCIÓN</b> el intervalo se buscará desde donde inicie en
+          adelante, no mirará valores inferiores. Además, tiene establecido un
+          límite de
           <b>130</b> iteraciones para mantener una experiencia rápida
           y agradable.
           <br />
           <br />
-          <b>Nota:</b>Al calcular el intervalo de solución aparecerá una notificación y se
+          <b>Nota:</b> Al calcular el intervalo de solución aparecerá una notificación y se
           llenarán automáticamente los campos necesarios para calcular la solución.
         </p>
       </div>
       <span></span>
       <div class="helper">
-        <label>Inicio del intervalo</label>
-        <p>Introduce desde donde se empesará a buscar el intervalo de solución.</p>
+        <label>Inicio de la búsqueda</label>
+        <p>Introduce desde donde se empezará a buscar el intervalo de solución.</p>
       </div>
       <input
         type="number"
         step="any"
+        name="interval_search_start"
         v-model="search_i_start_string"
-        placeholder="Inicio del intervalo"
+        placeholder="Inicio de la búsqueda"
       />
 
       <div class="helper">
@@ -61,6 +65,7 @@
       <input
         type="number"
         step="any"
+        name="interval_search_length"
         v-model="search_i_lenght_string"
         placeholder="Longitud del intervalo"
       />
@@ -72,7 +77,7 @@
         <p>
           Para calcular la solución sin problemas se ha establecido el número
           máximo de iteraciones a 300 para así evitar un mal funcionamiento de
-          la aplicación, o una demora execisva a la hora de determinar la
+          la aplicación, o una demora excesiva a la hora de determinar la
           solución.
         </p>
       </div>
@@ -100,7 +105,7 @@
       <input type="number" step="any" v-model="solution_error" placeholder="Margen de error" />
 
       <div class="helper">
-        <label>Aproximacion Inicial</label>
+        <label>Aproximación Inicial</label>
         <p>El valor de aproximación inicial.</p>
       </div>
 
